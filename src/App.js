@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 
-// import base from './base';
+import base from './base';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.scss';
@@ -29,16 +29,16 @@ class App extends Component {
     ],
   }
 
-  // componentDidMount() {
-  //   // console.log('mounted!');
-  //   this.ref = base.syncState('/todo', {
-  //     context: this,
-  //     state: 'todo',
-  //   });
-  // }
-
   // ID Counter
   prevID = 3;
+
+  componentDidMount() {
+    // console.log('mounted!');
+    this.ref = base.syncState('todo/', {
+      context: this,
+      state: 'todo',
+    });
+  }
 
   addTodo = (title) => {
     // console.log(todo);
