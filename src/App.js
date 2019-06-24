@@ -29,9 +29,6 @@ class App extends Component {
     ],
   }
 
-  // ID Counter
-  prevID = 3;
-
   componentDidMount() {
     // console.log('mounted!');
     this.ref = base.syncState('todo/', {
@@ -41,12 +38,16 @@ class App extends Component {
   }
 
   addTodo = (title) => {
+    const { todo } = this.state;
+    const idArr = todo.map(t => t.id);
+    const newID = Math.max.apply(null, idArr) + 1;
+    // console.log(newID);
     // console.log(todo);
     this.setState(prevState => ({
       todo: [
         ...prevState.todo,
         {
-          id: this.prevID += 1,
+          id: newID,
           title,
           isDone: false,
         },
