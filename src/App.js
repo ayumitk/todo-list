@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log('mounted!');
     this.ref = base.syncState('todo/', {
       context: this,
       state: 'todo',
