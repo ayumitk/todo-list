@@ -1,4 +1,4 @@
-# Simple ToDo List
+# Simple ToDo App
 
 - [Create React App](https://github.com/facebook/create-react-app)
 - [Firebase](https://firebase.google.com/)
