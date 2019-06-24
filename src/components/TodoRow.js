@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TodoRow extends Component {
+  editInput = React.createRef();
+
   deleteTodo = (id) => {
     // console.log(id);
     const { onDeleteTodo } = this.props;
@@ -12,6 +14,16 @@ class TodoRow extends Component {
     // console.log(id);
     const { onDoneTodo } = this.props;
     onDoneTodo(id);
+  }
+
+  editTodo = (e, id) => {
+    if (e.key === 'Enter') {
+      const title = this.editInput.current.value;
+      // console.log(`${id} ${title}`);
+      const { onEditTodo } = this.props;
+      onEditTodo(id, title);
+      e.target.blur();
+    }
   }
 
   render() {
@@ -25,7 +37,13 @@ class TodoRow extends Component {
         >
           Done
         </button>
-        <div className="toto-title">{todo.title}</div>
+        <input
+          type="text"
+          className="toto-title form-control"
+          defaultValue={todo.title}
+          onKeyDown={e => this.editTodo(e, todo.id)}
+          ref={this.editInput}
+        />
         <button
           type="button"
           className="btn btn-outline-danger ml-auto btn-delete"
@@ -42,6 +60,7 @@ TodoRow.propTypes = {
   todo: PropTypes.object.isRequired,
   onDeleteTodo: PropTypes.func.isRequired,
   onDoneTodo: PropTypes.func.isRequired,
+  onEditTodo: PropTypes.func,
 };
 
 export default TodoRow;

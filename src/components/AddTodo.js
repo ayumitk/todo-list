@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class AddTodo extends Component {
   myInput = React.createRef();
 
-  addTodo = (event) => {
-    event.preventDefault();
+  addTodo = (e) => {
+    e.preventDefault();
     // console.log(this.myInput.current.value);
     const { onAddTodo } = this.props;
     onAddTodo(this.myInput.current.value);

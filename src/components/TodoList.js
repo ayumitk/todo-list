@@ -15,6 +15,12 @@ class TodoList extends Component {
     onDoneTodo(id);
   }
 
+  editTodo = (id, title) => {
+    // console.log(`${id} ${title}`);
+    const { onEditTodo } = this.props;
+    onEditTodo(id, title);
+  }
+
   render() {
     const { todo } = this.props;
     return (
@@ -25,6 +31,7 @@ class TodoList extends Component {
             key={item.id}
             onDeleteTodo={this.deleteTodo}
             onDoneTodo={this.doneTodo}
+            onEditTodo={this.editTodo}
           />
         ))}
       </ul>
@@ -36,6 +43,7 @@ TodoList.propTypes = {
   todo: PropTypes.array.isRequired,
   onDeleteTodo: PropTypes.func.isRequired,
   onDoneTodo: PropTypes.func.isRequired,
+  onEditTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;

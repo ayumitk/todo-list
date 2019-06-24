@@ -10,23 +10,7 @@ import './App.scss';
 
 class App extends Component {
   state = {
-    todo: [
-      {
-        id: 1,
-        title: 'aaa',
-        isDone: false,
-      },
-      {
-        id: 2,
-        title: 'bbb',
-        isDone: false,
-      },
-      {
-        id: 3,
-        title: 'ccc',
-        isDone: true,
-      },
-    ],
+    todo: [],
   }
 
   componentDidMount() {
@@ -72,6 +56,16 @@ class App extends Component {
     }));
   }
 
+  editTodo = (id, title) => {
+    // console.log(`${id} ${title}`);
+    const { todo } = this.state;
+    const index = todo.findIndex(t => t.id === id);
+    // console.log(index);
+    const changedState = { ...this.state };
+    changedState.todo[index].title = title;
+    this.setState(changedState);
+  }
+
   render() {
     const { todo } = this.state;
     return (
@@ -87,6 +81,7 @@ class App extends Component {
           todo={todo}
           onDeleteTodo={this.deleteTodo}
           onDoneTodo={this.doneTodo}
+          onEditTodo={this.editTodo}
         />
       </div>
     );

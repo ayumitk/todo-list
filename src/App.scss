@@ -15,10 +15,17 @@ body {
   }
 }
 
+.toto-title {
+  margin: 0 1rem;
+  border-color: transparent;
+  &:focus {
+    border-color: #007bff;
+  }
+}
+
 .btn-done {
   border-color: lightseagreen;
   color: lightseagreen;
-  margin-right: 1rem;
 
   &:hover {
     background: lightseagreen;
