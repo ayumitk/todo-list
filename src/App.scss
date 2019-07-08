@@ -16,7 +16,7 @@ body {
 }
 
 .toto-title {
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   border-color: transparent;
   &:focus {
     border-color: #007bff;
@@ -24,24 +24,46 @@ body {
 }
 
 .btn-done {
-  border-color: lightseagreen;
   color: lightseagreen;
-
-  &:hover {
-    background: lightseagreen;
-    color: #fff;
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
-.done {
-  .toto-title {
-    text-decoration: line-through;
-    color: #999;
+.todo-list li {
+  &:not(.done) {
+    .btn-done {
+      &:hover {
+        color: lighten(lightseagreen, 10%);
+      }
+    }
   }
+  &.done {
+    .toto-title {
+      text-decoration: line-through;
+      color: #999;
+    }
 
-  .btn-done {
-    background: lightseagreen;
-    color: #fff;
-    opacity: 0.5;
+    .btn-done {
+      opacity: 0.5;
+      &:hover {
+        color: lightseagreen;
+      }
+    }
   }
+}
+
+.btn-delete {
+  color: darken(red, 10%);
+  &:hover {
+    color: red;
+  }
+}
+
+.btn-done,
+.btn-delete {
+  border: 0;
+  background: transparent;
+  padding: 0;
 }

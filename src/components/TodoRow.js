@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaTrashAlt, FaRegCircle, FaCheckCircle } from 'react-icons/fa';
 
 class TodoRow extends Component {
   editInput = React.createRef();
@@ -39,7 +40,7 @@ class TodoRow extends Component {
           className="btn btn-done"
           onClick={() => this.doneTodo(todo.id)}
         >
-          Done
+          {todo.isDone ? <FaCheckCircle /> : <FaRegCircle />}
         </button>
         <input
           type="text"
@@ -50,10 +51,10 @@ class TodoRow extends Component {
         />
         <button
           type="button"
-          className="btn btn-outline-danger ml-auto btn-delete"
+          className="ml-auto btn-delete"
           onClick={() => this.deleteTodo(todo.id)}
         >
-          Delete
+          <FaTrashAlt />
         </button>
       </li>
     );
