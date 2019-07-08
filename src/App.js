@@ -33,6 +33,7 @@ class App extends Component {
           id: newID,
           title,
           isDone: false,
+          isDelete: false,
         },
       ],
     }));
@@ -50,9 +51,12 @@ class App extends Component {
 
   deleteTodo = (id) => {
     // console.log(id);
-    this.setState(prevState => ({
-      todo: prevState.todo.filter(t => t.id !== id),
-    }));
+    const { todo } = this.state;
+    const index = todo.findIndex(t => t.id === id);
+    // console.log(index);
+    const changedState = { ...this.state };
+    changedState.todo[index].isDelete = true;
+    this.setState(changedState);
   }
 
   editTodo = (id, title) => {
@@ -67,6 +71,9 @@ class App extends Component {
 
   render() {
     const { todo } = this.state;
+    const total = todo.filter(t => t.isDelete === false);
+    // console.log(total.length);
+
     return (
       <div className="container">
         <AddTodo
@@ -74,7 +81,7 @@ class App extends Component {
         />
         <p className="text-secondary">
           <span>Total:</span>
-          <span className="pl-2">{todo.length}</span>
+          <span className="pl-2">{total.length}</span>
         </p>
         <TodoList
           todo={todo}

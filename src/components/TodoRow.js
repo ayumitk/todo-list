@@ -28,6 +28,10 @@ class TodoRow extends Component {
 
   render() {
     const { todo } = this.props;
+    if (todo.isDelete) {
+      return null;
+    }
+
     return (
       <li className={todo.isDone ? 'done' : ''}>
         <button
