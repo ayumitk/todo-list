@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import moment from 'moment';
 
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
@@ -34,6 +35,8 @@ class App extends Component {
           title,
           isDone: false,
           isDelete: false,
+          date: null,
+          // date: moment().format(),
         },
       ],
     }));
@@ -69,10 +72,30 @@ class App extends Component {
     this.setState(changedState);
   }
 
+  editDue = (date, id) => {
+    // console.log(date);
+    // console.log(id);
+    const { todo } = this.state;
+    const index = todo.findIndex(t => t.id === id);
+    const changedState = { ...this.state };
+
+    // console.log(changedState.todo[index]);
+
+    if (date) {
+      changedState.todo[index].date = date.format();
+    } else {
+      delete changedState.todo[index].date;
+    }
+    // console.log(changedState.todo[index]);
+    // console.log(changedState);
+    this.setState(changedState);
+  }
+
   render() {
     const { todo } = this.state;
     const total = todo.filter(t => t.isDelete === false);
-    // console.log(total.length);
+
+    // console.log(this.state.todo);
 
     return (
       <div className="container">
@@ -88,6 +111,7 @@ class App extends Component {
           onDeleteTodo={this.deleteTodo}
           onDoneTodo={this.doneTodo}
           onEditTodo={this.editTodo}
+          onEditDue={this.editDue}
         />
       </div>
     );

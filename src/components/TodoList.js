@@ -21,6 +21,13 @@ class TodoList extends Component {
     onEditTodo(id, title);
   }
 
+  editDue = (date, id) => {
+    // console.log(date);
+    // console.log(id);
+    const { onEditDue } = this.props;
+    onEditDue(date, id);
+  }
+
   render() {
     const { todo } = this.props;
     return (
@@ -32,6 +39,7 @@ class TodoList extends Component {
             onDeleteTodo={this.deleteTodo}
             onDoneTodo={this.doneTodo}
             onEditTodo={this.editTodo}
+            onEditDue={this.editDue}
           />
         ))}
       </ul>
@@ -44,6 +52,7 @@ TodoList.propTypes = {
   onDeleteTodo: PropTypes.func.isRequired,
   onDoneTodo: PropTypes.func.isRequired,
   onEditTodo: PropTypes.func.isRequired,
+  onEditDue: PropTypes.func,
 };
 
 export default TodoList;
