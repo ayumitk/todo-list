@@ -95,7 +95,15 @@ class App extends Component {
     const { todo } = this.state;
     const total = todo.filter(t => t.isDelete === false);
 
-    // console.log(this.state.todo);
+    todo.sort((a, b) => {
+      if (a.date < b.date) {
+        return -1;
+      }
+      if (a.date > b.date) {
+        return 1;
+      }
+      return 0;
+    });
 
     return (
       <div className="container">
