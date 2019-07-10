@@ -68,7 +68,6 @@ class TodoRow extends Component {
             onKeyDown={e => this.editTodo(e, todo.id)}
             ref={this.editInput}
           />
-          <p>{todo.due}</p>
           <SingleDatePicker
             date={this.state.date}
             onDateChange={date => this.editDue({ date }, todo.id)}

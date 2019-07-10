@@ -87,15 +87,20 @@ class App extends Component {
       delete changedState.todo[index].date;
     }
     // console.log(changedState.todo[index]);
-    // console.log(changedState);
     this.setState(changedState);
   }
 
   render() {
     const { todo } = this.state;
+
     const total = todo.filter(t => t.isDelete === false);
 
-    todo.sort((a, b) => {
+    const noDueTodo = todo.filter(v => !v.date);
+    const dueTodo = todo.filter(v => v.date);
+    // console.log(noDueTodo);
+    // console.log(dueTodo);
+
+    const sortedDueTodo = dueTodo.sort((a, b) => {
       if (a.date < b.date) {
         return -1;
       }
@@ -104,6 +109,10 @@ class App extends Component {
       }
       return 0;
     });
+    // console.log(sortedDueTodo);
+
+    const sortedTodo = sortedDueTodo.concat(noDueTodo);
+    // console.log(sortedTodo);
 
     return (
       <div className="container">
@@ -115,7 +124,7 @@ class App extends Component {
           <span className="pl-2">{total.length}</span>
         </p>
         <TodoList
-          todo={todo}
+          todo={sortedTodo}
           onDeleteTodo={this.deleteTodo}
           onDoneTodo={this.doneTodo}
           onEditTodo={this.editTodo}
